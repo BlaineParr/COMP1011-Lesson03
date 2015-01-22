@@ -1,23 +1,38 @@
 /**
- * 
- */
-
-/**
  * @author Blaine Parr
  * Class Description: Creating a vehicle class used as a superclass for all other vehicles
  */
-public class Vehicle 
+public abstract class Vehicle 
 {
-	private int numWheels = 4;
-	private int numDoors = 2;
-	private String colour = "";
-	private String make = "";
-	private String model = "";
-	private String year = "";
-	private float speed = 0;
-	private final int MAX_SPEED = 40;
+	protected int numWheels = 4;
+	protected int numDoors = 2;
+	protected String colour = "";
+	protected String make = "";
+	protected String model = "";
+	protected String year = "";
+	protected float speed = 0;
+	protected final int MAX_SPEED = 40;
 	
-	//Getters------------------------------------------------------------------------------------
+	//Constructors///////////////////////////////////////////////////////////////////////////////
+	public Vehicle(int wheels, int doors, String colour, String make, String model, String year)
+	{
+		this.numWheels = wheels;
+		this.numDoors = doors;
+		this.colour = colour;
+		this.make = make;
+		this.model = model;
+		this.year = year;
+	} //constructor ends
+	
+	public Vehicle(String colour, String make, String model, String year)
+	{
+		this.colour = colour;
+		this.make = make;
+		this.model = model;
+		this.year = year;
+	} //constructor ends
+	
+	//Getters////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * @return the numWheels
 	 */
@@ -74,31 +89,11 @@ public class Vehicle
 		return this.speed;
 	} //method getSpeed ends
 
-	public Vehicle()
-	{
-		
-	} //constructor ends
+	//Public Abstract Methods////////////////////////////////////////////////////////////////////
+	//Must be overridden
+	public abstract void accelerate();
 	
-	public void accelerate()
-	{
-		this.speed += 4;
-		
-		if(this.speed > this.MAX_SPEED)
-		{
-			this.speed = this.MAX_SPEED;
-		} //if ends
-	} //method accelerate ends
-	
-	public void decelerate()
-	{
-		this.speed -= 6;
-		
-		//if the speed goes lower than 0, set it to 0
-		if(this.speed < 0)
-		{
-			this.speed = 0;
-		} //if ends
-	} //method decelerate ends
+	public abstract void decelerate();
 	
 	public void turnLeft()
 	{
